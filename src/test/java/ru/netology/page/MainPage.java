@@ -5,12 +5,20 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
-    private SelenideElement paymentButton = $(byText("Купить"));
-    private SelenideElement paymentByCard = $(byText("Оплата по карте"));
+    private final SelenideElement paymentButton = $(byText("Купить"));
+    private final SelenideElement paymentByCard = $(byText("Оплата по карте"));
+    private final SelenideElement paymentByCredit = $(byText("Кредит по данным карты"));
+    private final SelenideElement creditButton = $(byText("Купить в кредит"));
 
     public PaymentPage payByCard () {
         paymentButton.click();
         paymentByCard.shouldBe(visible);
         return new PaymentPage();
     }
+    public CreditPage payByCredit () {
+        creditButton.click();
+        paymentByCredit.shouldBe(visible);
+        return new CreditPage();
+    }
+}
 }

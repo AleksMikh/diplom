@@ -2,7 +2,6 @@ package ru.netology.data;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
-
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.Locale;
@@ -154,7 +153,6 @@ public class DataHelper {
     public static String getCVCshort() {
         return "22";
     }
-
     public static String getCVClong() {
         return "1234";
     }
