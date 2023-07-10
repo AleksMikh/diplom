@@ -20,7 +20,7 @@ public class PaymentPage {
     private final SelenideElement cvc = fields.get(4);
     private final ElementsCollection button = $$(".button");
     private final SelenideElement continueButton = button.get(2);
-    private final SelenideElement cardNumberError = $(".input__sub").shouldHave(exactText("Неверный формат")).shouldBe(visible);
+    private final SelenideElement cardNumberError = $x("//*[@id=\"root\"]/div/form/fieldset/div[1]/span/span/span[3]");
     private final SelenideElement monthError = $(byText("Месяц")).parent().$(".input__sub");
     private final SelenideElement yearError = $(byText("Год")).parent().$(".input__sub");
     private final SelenideElement ownerError = $(byText("Владелец")).parent().$(".input__sub");
