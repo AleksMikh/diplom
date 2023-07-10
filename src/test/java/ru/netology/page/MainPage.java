@@ -21,4 +21,3 @@ public class MainPage {
         return new CreditPage();
     }
 }
-}
