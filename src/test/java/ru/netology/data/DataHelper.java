@@ -66,11 +66,11 @@ public class DataHelper {
     }
 
     public static String getMonthWithLetters() {
-        return ("di");
+        return ("qq");
     }
 
     public static String getMonthWithSigns() {
-        return (">1");
+        return ("1*");
     }
 
     public static String getMonthWithOneDigit() {
@@ -122,11 +122,11 @@ public class DataHelper {
     }
 
     public static String getOwnerNameWithDigits() {
-        return "1234 Gavr";
+        return "qwerty 1111";
     }
 
     public static String getOwnerNameWithSigns() {
-        return "*** Gavr";
+        return "*** qwerty";
     }
 
     public static String getOwnerNameShort() {
@@ -134,12 +134,12 @@ public class DataHelper {
     }
 
     public static String getOwnerNameWithDoubleName() {
-        return "Mary Saint-Petersburg";
+        return "Mikhail Saltykov-Shchedrin";
     }
 
     //cvc
     public static String getCVC() {
-        return "234";
+        return "123";
     }
 
     public static String getCVCwithLetters() {
@@ -147,7 +147,7 @@ public class DataHelper {
     }
 
     public static String getCVCwithSigns() {
-        return "23=";
+        return "23*";
     }
 
     public static String getCVCshort() {

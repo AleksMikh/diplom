@@ -4,6 +4,8 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selectors.byText;
@@ -18,7 +20,7 @@ public class PaymentPage {
     private final SelenideElement cvc = fields.get(4);
     private final ElementsCollection button = $$(".button");
     private final SelenideElement continueButton = button.get(2);
-    private final SelenideElement cardNumberError = $x("//*[@id=\"root\"]/div/form/fieldset/div[1]/span/span/span[3]");
+    private final SelenideElement cardNumberError = $(".input__sub").shouldHave(exactText("Неверный формат")).shouldBe(visible);
     private final SelenideElement monthError = $(byText("Месяц")).parent().$(".input__sub");
     private final SelenideElement yearError = $(byText("Год")).parent().$(".input__sub");
     private final SelenideElement ownerError = $(byText("Владелец")).parent().$(".input__sub");
@@ -58,7 +60,7 @@ public class PaymentPage {
     }
 
     public void declinedPayment() {
-        $(byCssSelector("div.notification.notification_status_error.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white")).shouldBe(Condition.visible, Duration.ofSeconds(20));
+        $("notification_status_error").shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 
 
