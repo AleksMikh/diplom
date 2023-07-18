@@ -2,8 +2,12 @@ package ru.netology.data;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import lombok.val;
+
 import java.time.LocalDate;
 import java.time.Year;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class DataHelper {
@@ -49,13 +53,11 @@ public class DataHelper {
         LocalDate localDate = LocalDate.now();
         return String.format("%02d", localDate.getMonthValue());
     }
-    public static String getPastMonth(){
-        LocalDate localDate = LocalDate.MIN;
-        return String.format("%02d",localDate.getMonthValue());
+    public static String getMonthMinus1(){
+        return LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
     }
-    public static String getTheFirstMonth(){
-        LocalDate localDate = LocalDate.MAX;
-        return String.format("%02d",localDate.getMonthValue());
+    public static String getMonth12(){
+        return ("12");
     }
     public static String getMonthOver12() {
         return ("13");

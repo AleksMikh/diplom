@@ -170,7 +170,7 @@ public class PaymentPageTest {
 
     @Test
     void entering12InTheMonthField() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getTheFirstMonth(), getValidNextYear(), getOwnerName(), getCVC());
+        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getMonth12(), getValidNextYear(), getOwnerName(), getCVC());
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -223,8 +223,8 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theCurrentYearIsMesetsPreveduschy() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getPastMonth(), getValidYear(), getOwnerName(), getCVC());
+    void theCurrentYearAndPreviousMonth() {
+        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthMinus1(), getValidYear(), getOwnerName(), getCVC());
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);

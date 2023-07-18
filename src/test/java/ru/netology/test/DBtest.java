@@ -1,7 +1,6 @@
 package ru.netology.test;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import lombok.val;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,21 +31,21 @@ public class DBtest {
 
     @Test
     void shouldBeApprovedWithApprovedCard() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+        var mainPage = new MainPage();
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
-        assertEquals("APPROVED", DBUtils.getPaymentStatus());
+        assertEquals(DBUtils.getPaymentStatus(), "APPROVED");
     }
 
     @Test
     void shouldBeDeclinedWithDeclinedCard() {
-        val cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+        var mainPage = new MainPage();
+        var cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
-        assertEquals("DECLINED", DBUtils.getPaymentStatus());
+        assertEquals(DBUtils.getPaymentStatus(), "DECLINED");
     }
 }
