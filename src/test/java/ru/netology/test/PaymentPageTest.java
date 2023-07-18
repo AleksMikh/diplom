@@ -70,7 +70,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void successfulCardPaymentNoSpace() {
+    void cardNumberWithoutSpaces() {
         var cardInfo = new DataHelper.CardInfo(getApprovedCardNumberNoSpace(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
@@ -106,7 +106,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void LongCardNumber() {
+    void longCardNumber() {
         var cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
@@ -259,7 +259,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void DigitInYear() {
+    void oneDigitInYear() {
         var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithOneDigit(), getOwnerName(), getCVC());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
