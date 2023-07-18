@@ -82,6 +82,9 @@ public class DataHelper {
     public static String getMonthWithNulls() {
         return ("00");
     }
+    public static String getMonthWithNull() {
+        return ("0");
+    }
 
     public static String getMonthWithThreeDigits() {
         return ("123");

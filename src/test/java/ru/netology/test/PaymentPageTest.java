@@ -33,335 +33,335 @@ public class PaymentPageTest {
 
     @Test
     void shouldGetPaymentPage() {
-        val mainPage = new MainPage();
+        var mainPage = new MainPage();
         mainPage.payByCard();
     }
 
     @Test
     void shouldGetCreditPage() {
-        val mainPage = new MainPage();
+        var mainPage = new MainPage();
         mainPage.payByCredit();
     }
 
     @Test
     void successfulCardPayment() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
     @Test
     void shouldNotPayWithDeclinedCard() {
-        val cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+        var cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.declinedPayment();
     }
 
     @Test
-    void theCardNumberIsShort() {
-        val cardInfo = new DataHelper.CardInfo(getShortCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void ShortCardNumber() {
+        var cardInfo = new DataHelper.CardInfo(getShortCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cardNumberErrorVisible();
     }
 
     @Test
     void successfulCardPaymentNoSpace() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumberNoSpace(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumberNoSpace(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void cardNumberNotEntered() {
-        val cardInfo = new DataHelper.CardInfo(null, getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void emptyCardNumber() {
+        var cardInfo = new DataHelper.CardInfo(null, getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cardNumberErrorVisible();
     }
 
     @Test
-    void theCardNumberIsEnteredWithTheLetter() {
-        val cardInfo = new DataHelper.CardInfo(getCardNumberWithLetters(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void cardNumberWithLetter() {
+        var cardInfo = new DataHelper.CardInfo(getCardNumberWithLetters(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cardNumberErrorVisible();
     }
 
     @Test
-    void theCardNumberIsEnteredWithSpecialCharacters() {
-        val cardInfo = new DataHelper.CardInfo(getCardNumberWithSigns(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void cardNumberWithSpecialCharacters() {
+        var cardInfo = new DataHelper.CardInfo(getCardNumberWithSigns(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cardNumberErrorVisible();
     }
 
     @Test
-    void theCardNumberEnteredIsLong() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void LongCardNumber() {
+        var cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void monthNotEntered() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), null, getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void emptyMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), null, getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.monthErrorVisible();
     }
 
     @Test
-    void enteringSingleDigitInTheMonthField() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getMonthWithOneDigit(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void singleDigitInMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithOneDigit(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void addingLetterToTheMonthField() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getMonthWithLetters(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void monthWithLetters() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithLetters(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.monthErrorVisible();
     }
 
     @Test
-    void enteringThreeDigitsInTheMonthField() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getMonthWithThreeDigits(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void threeDigitsInMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithThreeDigits(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void enteringTwoZerosInTheMonthField() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getMonthWithNulls(), getValidNextYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void doubleZeroInMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithNulls(), getValidNextYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.monthErrorVisible();
     }
 
     @Test
-    void entering01InTheMonthField() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getMonth01(), getValidNextYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void zeroOneInMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonth01(), getValidNextYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void entering12InTheMonthField() {
-        val cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getMonth12(), getValidNextYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void twelveInMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonth12(), getValidNextYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void numberOfTheMonthIsEnteredMoreThan12() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthOver12(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void monthNumberOver12() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthOver12(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.monthErrorVisible();
     }
 
     @Test
-    void enteredInTheMonthFieldOfSpecialCharacters() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithSigns(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void monthWithSpecialCharacters() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithSigns(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.monthErrorVisible();
     }
 
     @Test
-    void enteredInTheMonthFieldOfTheLetter() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithLetters(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void zeroInMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithNull(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.monthErrorVisible();
     }
 
     @Test
-    void theYearFieldIsNotFilled() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), null, getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void emptyYear() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), null, getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.yearErrorVisible();
     }
 
     @Test
-    void thePreviousYearIsEnteredInTheYearField() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getPastYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void previousYearInYear() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getPastYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.yearErrorVisible();
     }
 
     @Test
-    void theCurrentYearAndPreviousMonth() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthMinus1(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void currentYearAndPreviousMonth() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthMinus1(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.monthErrorVisible();
     }
 
     @Test
     void currentYearAndCurrentMonth() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void addingSpecialCharactersToTheYearField() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithSigns(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void specialCharactersInYear() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithSigns(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.yearErrorVisible();
     }
 
     @Test
-    void enteringЕheYearFieldInLetters() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithLetters(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void lettersInYear() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithLetters(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.yearErrorVisible();
     }
 
     @Test
-    void enteringSingleDigitInTheYearField() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithOneDigit(), getOwnerName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void DigitInYear() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithOneDigit(), getOwnerName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.yearErrorVisible();
     }
 
     @Test
-    void theOwnerFieldIsNotFilled() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), null, getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void emptyOwnerName() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), null, getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.ownerErrorVisible();
     }
 
     @Test
-    void theOwnerFieldIsFilledWithCapitalLetter() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameShort(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void shortOwnerName() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameShort(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.ownerErrorVisible();
     }
 
     @Test
-    void theOwnerFieldIsFilledInWithHyphen() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDoubleName(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void ownerNameWithDoubleName() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDoubleName(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void theOwnerFieldIsFilledInCyrillic() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameInRussia(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void cyrillicNameOwner() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameInRussia(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.ownerErrorVisible();
     }
 
     @Test
-    void theOwnerFieldIsFilledInWithSpecialCharacter() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithSigns(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void ownerNameWithSpecialCharacters() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithSigns(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.ownerErrorVisible();
     }
 
     @Test
-    void theOwnerFieldIsFilledInWithDigit() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDigits(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void ownerNameWithDigits() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDigits(), getCVC());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.ownerErrorVisible();
     }
 
     @Test
-    void theCVCfieldIsNotFilledIn() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), null);
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void emptyCVC() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), null);
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cvcErrorVisible();
     }
 
     @Test
-    void theCVCfieldIsFilledWithSpecialCharacters() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCwithSigns());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void specialCharactersInCVC() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCwithSigns());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cvcErrorVisible();
     }
 
     @Test
-    void theCVCfieldIsFilledWith2Digits() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCshort());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void twoDigitInCVC() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCshort());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cvcErrorVisible();
     }
 
     @Test
-    void theCVCfieldIsFilledWith4Digits() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVClong());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void fourDigitInCVC() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVClong());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
 
     @Test
-    void theCVCfieldIsFilledWithLetters() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCwithLetters());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
+    void lettersInCVC() {
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCwithLetters());
+        var mainPage = new MainPage();
+        var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.cvcErrorVisible();
     }
