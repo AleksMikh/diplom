@@ -19,7 +19,7 @@
 Всего: 40 тестов:
 * Успешных: 33 (82,5%)
 * Неуспешных: 7 (17,5%)
-![image](https://github.com/AleksMikh/diplom/blob/main/pic/Allure%20Report%20-%20Google%20Chrome%202023-07-11%2001.30.21.png?raw=true) 
+![image](https://github.com/AleksMikh/diplom/blob/main/pic/Allure%20Report%20V2.png?raw=true) 
 
 ### Общие рекомендации
 
