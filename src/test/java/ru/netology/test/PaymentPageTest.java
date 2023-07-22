@@ -1,4 +1,5 @@
 package ru.netology.test;
+
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.page.MainPage;
+
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataHelper.*;
 
@@ -45,15 +47,16 @@ public class PaymentPageTest {
 
     @Test
     void successfulCardPayment() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
     }
+
     @Test
     void shouldNotPayWithDeclinedCard() {
-        var cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -62,7 +65,7 @@ public class PaymentPageTest {
 
     @Test
     void ShortCardNumber() {
-        var cardInfo = new DataHelper.CardInfo(getShortCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getShortCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -71,7 +74,7 @@ public class PaymentPageTest {
 
     @Test
     void cardNumberWithoutSpaces() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumberNoSpace(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumberNoSpace(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -80,7 +83,7 @@ public class PaymentPageTest {
 
     @Test
     void emptyCardNumber() {
-        var cardInfo = new DataHelper.CardInfo(null, getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(null, getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -89,7 +92,7 @@ public class PaymentPageTest {
 
     @Test
     void cardNumberWithLetter() {
-        var cardInfo = new DataHelper.CardInfo(getCardNumberWithLetters(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getCardNumberWithLetters(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -98,7 +101,7 @@ public class PaymentPageTest {
 
     @Test
     void cardNumberWithSpecialCharacters() {
-        var cardInfo = new DataHelper.CardInfo(getCardNumberWithSigns(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getCardNumberWithSigns(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -107,7 +110,7 @@ public class PaymentPageTest {
 
     @Test
     void longCardNumber() {
-        var cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getTheCardNumberEnteredIsLong(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -116,7 +119,7 @@ public class PaymentPageTest {
 
     @Test
     void emptyMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), null, getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), null, getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -125,7 +128,7 @@ public class PaymentPageTest {
 
     @Test
     void singleDigitInMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithOneDigit(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getOneDigit(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -134,7 +137,7 @@ public class PaymentPageTest {
 
     @Test
     void monthWithLetters() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithLetters(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getTwoLetters(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -143,7 +146,7 @@ public class PaymentPageTest {
 
     @Test
     void threeDigitsInMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithThreeDigits(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getThreeDigit(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -152,7 +155,7 @@ public class PaymentPageTest {
 
     @Test
     void doubleZeroInMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithNulls(), getValidNextYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithNulls(), getValidNextYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -161,7 +164,7 @@ public class PaymentPageTest {
 
     @Test
     void zeroOneInMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonth01(), getValidNextYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonth01(), getValidNextYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -170,7 +173,7 @@ public class PaymentPageTest {
 
     @Test
     void twelveInMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonth12(), getValidNextYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getTwoDigit(), getValidNextYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -179,7 +182,7 @@ public class PaymentPageTest {
 
     @Test
     void monthNumberOver12() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthOver12(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthOver12(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -188,7 +191,7 @@ public class PaymentPageTest {
 
     @Test
     void monthWithSpecialCharacters() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithSigns(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithSigns(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -197,7 +200,7 @@ public class PaymentPageTest {
 
     @Test
     void zeroInMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithNull(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithNull(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -206,7 +209,7 @@ public class PaymentPageTest {
 
     @Test
     void emptyYear() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), null, getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), null, getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -215,7 +218,7 @@ public class PaymentPageTest {
 
     @Test
     void previousYearInYear() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getPastYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getPastYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -224,7 +227,7 @@ public class PaymentPageTest {
 
     @Test
     void currentYearAndPreviousMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthMinus1(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthMinus1(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -233,7 +236,7 @@ public class PaymentPageTest {
 
     @Test
     void currentYearAndCurrentMonth() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -242,7 +245,7 @@ public class PaymentPageTest {
 
     @Test
     void specialCharactersInYear() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithSigns(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithSigns(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -251,7 +254,7 @@ public class PaymentPageTest {
 
     @Test
     void lettersInYear() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithLetters(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getTwoLetters(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -260,7 +263,7 @@ public class PaymentPageTest {
 
     @Test
     void oneDigitInYear() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getYearWithOneDigit(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getOneDigit(), getOwnerName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -269,7 +272,7 @@ public class PaymentPageTest {
 
     @Test
     void emptyOwnerName() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), null, getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), null, getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -278,7 +281,7 @@ public class PaymentPageTest {
 
     @Test
     void shortOwnerName() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameShort(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameShort(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -287,7 +290,7 @@ public class PaymentPageTest {
 
     @Test
     void ownerNameWithDoubleName() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDoubleName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDoubleName(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -296,7 +299,7 @@ public class PaymentPageTest {
 
     @Test
     void cyrillicNameOwner() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameInRussia(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameInRussia(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -305,7 +308,7 @@ public class PaymentPageTest {
 
     @Test
     void ownerNameWithSpecialCharacters() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithSigns(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithSigns(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -314,7 +317,7 @@ public class PaymentPageTest {
 
     @Test
     void ownerNameWithDigits() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDigits(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDigits(), getThreeDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
@@ -341,7 +344,7 @@ public class PaymentPageTest {
 
     @Test
     void twoDigitInCVC() {
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCshort());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getTwoDigit());
         var mainPage = new MainPage();
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);

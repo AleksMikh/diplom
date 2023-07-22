@@ -1,4 +1,5 @@
 package ru.netology.test;
+
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterAll;
@@ -8,18 +9,19 @@ import org.junit.jupiter.api.Test;
 import ru.netology.data.DBUtils;
 import ru.netology.data.DataHelper;
 import ru.netology.page.MainPage;
+
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.*;
 
-public class DBtest {
+public class DbTests {
     @BeforeAll
-    static void setUpAll(){
+    static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @AfterAll
-    static void tearDownAll(){
+    static void tearDownAll() {
         SelenideLogger.removeListener("allure");
     }
 
@@ -32,7 +34,7 @@ public class DBtest {
     @Test
     void shouldBeApprovedWithApprovedCard() {
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
         paymentPage.successfullPayment();
@@ -42,10 +44,10 @@ public class DBtest {
     @Test
     void shouldBeDeclinedWithDeclinedCard() {
         var mainPage = new MainPage();
-        var cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
+        var cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getThreeDigit());
         var paymentPage = mainPage.payByCard();
         paymentPage.fillCard(cardInfo);
-        paymentPage.successfullPayment();
+        paymentPage.declinedPayment();
         assertEquals(DBUtils.getPaymentStatus(), "DECLINED");
     }
 }

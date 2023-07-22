@@ -1,4 +1,5 @@
 package ru.netology.data;
+
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -29,14 +30,16 @@ public class DataHelper {
     public static String getDeclinedCardNumber() {
         return ("5555 6666 7777 8888");
     }
-    public static String getApprovedCardNumberNoSpace(){
+
+    public static String getApprovedCardNumberNoSpace() {
         return "1111222233334444";
     }
 
     public static String getShortCardNumber() {
         return ("5555 6666 7777 888");
     }
-    public static String getTheCardNumberEnteredIsLong(){
+
+    public static String getTheCardNumberEnteredIsLong() {
         return "1111 2222 3333 4444 1";
     }
 
@@ -53,21 +56,40 @@ public class DataHelper {
         LocalDate localDate = LocalDate.now();
         return String.format("%02d", localDate.getMonthValue());
     }
-    public static String getMonthMinus1(){
-        return LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
+
+    public static String getMonthMinus1() {
+        return getShiftedMonth(1);
     }
-    public static String getMonth12(){
+
+    public static String getShiftedMonth(int monthCount) {
+        return LocalDate.now().minusMonths(monthCount).format(DateTimeFormatter.ofPattern("MM"));
+    }
+
+    public static String getShiftedYear(int yearCount) {
+        return LocalDate.now().minusYears(yearCount).format(DateTimeFormatter.ofPattern("YY"));
+    }
+
+    public static String getOneDigit() {
+        return ("1");
+    }
+
+    public static String getTwoDigit() {
         return ("12");
     }
+
+    public static String getThreeDigit() {
+        return ("123");
+    }
+
     public static String getMonthOver12() {
         return ("13");
     }
 
-    public static String getMonth01(){
+    public static String getMonth01() {
         return "01";
     }
 
-    public static String getMonthWithLetters() {
+    public static String getTwoLetters() {
         return ("qq");
     }
 
@@ -75,19 +97,12 @@ public class DataHelper {
         return ("1*");
     }
 
-    public static String getMonthWithOneDigit() {
-        return ("1");
-    }
-
     public static String getMonthWithNulls() {
         return ("00");
     }
+
     public static String getMonthWithNull() {
         return ("0");
-    }
-
-    public static String getMonthWithThreeDigits() {
-        return ("123");
     }
 
     //год
@@ -96,23 +111,15 @@ public class DataHelper {
     }
 
     public static String getPastYear() {
-        LocalDate localDate = LocalDate.now();
-        return String.format("%ty",Year.now().minusYears(2));
-    }
-    public static String getValidNextYear(){
-        return String.format("%ty",Year.now().plusYears(2));
+        return getShiftedYear(1);
     }
 
-    public static String getYearWithLetters() {
-        return ("aw");
+    public static String getValidNextYear() {
+        return String.format("%ty", Year.now().plusYears(2));
     }
 
     public static String getYearWithSigns() {
         return ("&&");
-    }
-
-    public static String getYearWithOneDigit() {
-        return ("9");
     }
 
     //владелец
@@ -143,10 +150,6 @@ public class DataHelper {
     }
 
     //cvc
-    public static String getCVC() {
-        return "123";
-    }
-
     public static String getCVCwithLetters() {
         return "abc";
     }
@@ -155,9 +158,6 @@ public class DataHelper {
         return "23*";
     }
 
-    public static String getCVCshort() {
-        return "22";
-    }
     public static String getCVClong() {
         return "1234";
     }

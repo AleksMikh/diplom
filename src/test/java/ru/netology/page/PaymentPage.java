@@ -1,8 +1,10 @@
 package ru.netology.page;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
+
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -27,7 +29,7 @@ public class PaymentPage {
     private final SelenideElement cvcError = $(byText("CVC/CVV")).parent().$(".input__sub");
 
 
-    public void fillCard(DataHelper.CardInfo cardInfo){
+    public void fillCard(DataHelper.CardInfo cardInfo) {
         cardNumber.setValue(cardInfo.getCardNumber());
         month.setValue(cardInfo.getMonth());
         year.setValue(cardInfo.getYear());
@@ -36,25 +38,26 @@ public class PaymentPage {
         continueButton.click();
     }
 
-    public void cardNumberErrorVisible(){
+    public void cardNumberErrorVisible() {
         cardNumberError.shouldBe(visible);
     }
 
-    public void monthErrorVisible(){
+    public void monthErrorVisible() {
         monthError.shouldBe(visible);
     }
 
-    public void yearErrorVisible(){
+    public void yearErrorVisible() {
         yearError.shouldBe(visible);
     }
 
-    public void ownerErrorVisible(){
+    public void ownerErrorVisible() {
         ownerError.shouldBe(visible);
     }
 
-    public void cvcErrorVisible(){
+    public void cvcErrorVisible() {
         cvcError.shouldBe(visible);
     }
+
     public void successfullPayment() {
         $(".notification_status_ok").shouldBe(Condition.visible, Duration.ofSeconds(30));
     }
@@ -62,7 +65,6 @@ public class PaymentPage {
     public void declinedPayment() {
         $("notification_status_error").shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
-
 
 
 }
