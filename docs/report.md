@@ -17,9 +17,9 @@
 ### Количество тестов
 
 Всего: 40 тестов:
-* Успешных: 33 (80%)
+* Успешных: 32 (80%)
 * Неуспешных: 8 (20%)
-![image](https://github.com/AleksMikh/diplom/blob/main/pic/Allure%20Report%20V2.png?raw=true) 
+![image](https://github.com/AleksMikh/diplom/blob/main/pic/Allure%20Report%20v3.png?raw=true) 
 
 ### Общие рекомендации
 
